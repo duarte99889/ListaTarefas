@@ -1,22 +1,28 @@
 import './App.css';
+import CriarTarefa from './components/criarTarefa';
+import ListaTarefas from './components/TempListaTarefas';
+import React, { useState } from 'react';
+
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  const adicionarTarefa = (todo) => {
+    setTodos([...todos, todo]);
+  };
+  
+
+  const removeTodo = (index) => {
+    const newTodos = todos.filter((_, i) => i !== index);
+    setTodos(newTodos);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>To-do List</h1>
-      </header>
-      <div>
-        <p>Barras Pesquisa</p>
-        <button>Adicionar Tarefa</button>
-        <p>Secção com todos</p>
-        <p>secção Ativa</p>
-        <p>Secção dos completos</p>
+    <div>
+      <h1>To-Do List</h1>
+      <CriarTarefa adicionarTarefa={adicionarTarefa} />
+      <ListaTarefas tarefas={todos} removerTarefa={removeTodo} />
       </div>
-      <div>
-        Lista com as tarefas em si
-      </div>
-    </div>
   );
 }
 

@@ -1,26 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Tarefa = ({ adicionarTarefa }) => {
-  const [input, setInput] = useState('');
-
-  const Adiciona = (e) => {
-    e.preventDefault();
-    if (input) {
-      adicionarTarefa(input);
-      setInput('');
-    }
-  };
-
+const Tarefa = ({ tarefa, remove }) => {
   return (
-    <form onSubmit={Adiciona}>
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Adiciona uma Tarefa"
-      />
-      <button type="submit">Adicionar</button>
-    </form>
+    <li>
+      {tarefa} <button onClick={remove}>Remover</button>
+    </li>
   );
 };
 
