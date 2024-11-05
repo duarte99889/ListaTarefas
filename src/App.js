@@ -24,7 +24,7 @@ function App() {
     );
     setTodos(novasTarefas);
   };
-
+  
   const ativarEdicao = (index) => {
     const novasTarefas = todos.map((todo, i) =>
       i === index ? { ...todo, editando: true } : todo

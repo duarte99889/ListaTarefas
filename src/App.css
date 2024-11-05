@@ -38,17 +38,17 @@ h1 {
 
 .todas-tarefas {
   background-color: #f0f8ff;
-  border: 1px solid #87cefa;
+  border: 2px solid #87cefa;
 }
 
 .nao-concluidas {
   background-color: #ffcdcd;
-  border: 1px solid #ff0707;
+  border: 2px solid #ff0707;
 }
 
 .concluidas {
   background-color: #d4edda;
-  border: 1px solid #28a745;
+  border: 2px solid #28a745;
 }
 
 h2 {
