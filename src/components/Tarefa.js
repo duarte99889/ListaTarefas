@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 
-const Tarefa = ({ tarefa, remove, editar, ativarEdicao, marcarConcluida }) => {
+const Tarefa = ({ tarefa, removerTarefa, editarTarefa, ativarEdicao, marcarConcluida }) => {
   const [novoTexto, setNovoTexto] = useState(tarefa.texto);
 
   const handleEdit = (e) => {
     e.preventDefault();
-    editar(tarefa.index, novoTexto); // Passar o índice da tarefa
+    editarTarefa(novoTexto);
   };
 
   return (
-    <li style={{ textDecoration: tarefa.concluida ? 'line-through' : 'none' }}>
+    <li>
       <input
         type="checkbox"
         checked={tarefa.concluida}
@@ -28,7 +28,7 @@ const Tarefa = ({ tarefa, remove, editar, ativarEdicao, marcarConcluida }) => {
         <>
           <span>{tarefa.texto}</span>
           <button onClick={ativarEdicao}>Editar</button>
-          <button onClick={remove}>Remover</button>
+          <button onClick={removerTarefa}>Remover</button>
         </>
       )}
     </li>

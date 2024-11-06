@@ -8,32 +8,32 @@ function App() {
   const [secaoAtiva, setSecaoAtiva] = useState('todas');
 
   const adicionarTarefa = (texto) => {
-    setTodos([...todos, { texto, concluida: false, editando: false }]);
+    setTodos([...todos, { id: Date.now(), texto, concluida: false, editando: false }]);
   };
 
-  const marcarConcluida = (index) => {
-    const novasTarefas = todos.map((todo, i) =>
-      i === index ? { ...todo, concluida: !todo.concluida } : todo
+  const marcarConcluida = (id) => {
+    const novasTarefas = todos.map((todo) =>
+      todo.id === id ? { ...todo, concluida: !todo.concluida } : todo
     );
     setTodos(novasTarefas);
   };
 
-  const editarTarefa = (index, novoTexto) => {
-    const novasTarefas = todos.map((todo, i) =>
-      i === index ? { ...todo, texto: novoTexto, editando: false } : todo
+  const editarTarefa = (id, novoTexto) => {
+    const novasTarefas = todos.map((todo) =>
+      todo.id === id ? { ...todo, texto: novoTexto, editando: false } : todo
     );
     setTodos(novasTarefas);
   };
   
-  const ativarEdicao = (index) => {
-    const novasTarefas = todos.map((todo, i) =>
-      i === index ? { ...todo, editando: true } : todo
+  const ativarEdicao = (id) => {
+    const novasTarefas = todos.map((todo) =>
+      todo.id === id ? { ...todo, editando: true } : todo
     );
     setTodos(novasTarefas);
   };
 
-  const removeTodo = (index) => {
-    const novasTarefas = todos.filter((_, i) => i !== index);
+  const removeTodo = (id) => {
+    const novasTarefas = todos.filter((todo) => todo.id !== id);
     setTodos(novasTarefas);
   };
 
