@@ -1,27 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { TodosContext } from './ContextoTarefa';
 
-const CriarTarefa = ({ adicionarTarefa }) => {
-  const [input, setInput] = useState('');
+function CriarTarefa() {
+  const [texto, setTexto] = useState('');
+  const { adicionarTarefa } = useContext(TodosContext);
 
-  const Adiciona = (e) => {
-    e.preventDefault();
-    if (input) {
-      adicionarTarefa(input);
-      setInput('');
-    }
+  const handleAdicionar = () => {
+    adicionarTarefa(texto);
+    setTexto('');
   };
 
   return (
-    <form onSubmit={Adiciona}>
+    <div>
       <input
         type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Adiciona uma Tarefa"
+        value={texto}
+        onChange={(e) => setTexto(e.target.value)}
+        placeholder="Nova tarefa"
       />
-      <button type="submit">Adicionar</button>
-    </form>
+      <button onClick={handleAdicionar}>Adicionar Tarefa</button>
+    </div>
   );
-};
+}
 
 export default CriarTarefa;

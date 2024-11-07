@@ -1,4 +1,13 @@
-# Getting Started with Create React App
+# Projeto das Listas de Tarefa
+
+
+
+## Utilizei:
+
+npm install react-router-dom
+npm install styled-components
+npm install prop-types
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

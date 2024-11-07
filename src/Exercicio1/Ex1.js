@@ -42,7 +42,7 @@ function Ex1() {
 
   return (
     <div className="app-container">
-      <h1>Lista de Tarefas</h1>
+      <h1>Lista de Tarefas 1</h1>
       <CriarTarefa adicionarTarefa={adicionarTarefa} />
 
       <div className="navegacao">

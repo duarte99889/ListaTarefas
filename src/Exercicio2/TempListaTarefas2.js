@@ -1,37 +1,27 @@
-import React, { useState } from 'react';
-import Tarefa from './Tarefa2';
+// TempListaTarefas2.js
+import React, { useContext } from 'react';
+import { TodosContext } from './ContextoTarefa';
 
-const ListaTarefas = ({ tarefas, removerTarefa, editarTarefa, ativarEdicao, marcarConcluida }) => {
-  const [termoPesquisa, setTermoPesquisa] = useState('');
-
-  const tarefasFiltradas = tarefas.filter((tarefa) =>
-    tarefa.texto.toLowerCase().includes(termoPesquisa.toLowerCase())
-  );
+function ListaTarefas() {
+  const { tarefasFiltradas, marcarConcluida, removerTarefa } = useContext(TodosContext);
+  const tarefas = tarefasFiltradas();
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Pesquisar tarefas..."
-        value={termoPesquisa}
-        onChange={(e) => setTermoPesquisa(e.target.value)}
-        className="campo-pesquisa"
-      />
-
-      <ul>
-        {tarefasFiltradas.map((tarefa) => (
-          <Tarefa
-            key={tarefa.id} 
-            tarefa={tarefa}
-            removerTarefa={() => removerTarefa(tarefa.id)}
-            editarTarefa={(novoTexto) => editarTarefa(tarefa.id, novoTexto)}
-            ativarEdicao={() => ativarEdicao(tarefa.id)}
-            marcarConcluida={() => marcarConcluida(tarefa.id)}
-          />
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {tarefas.map((todo) => (
+        <li key={todo.id}>
+          <span
+          >
+            {todo.texto}
+          </span>
+          <button onClick={() => marcarConcluida(todo.id)}>
+            {todo.concluida ? 'Desmarcar' : 'Concluir'}
+          </button>
+          <button onClick={() => removerTarefa(todo.id)}>Remover</button>
+        </li>
+      ))}
+    </ul>
   );
-};
+}
 
 export default ListaTarefas;
