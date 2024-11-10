@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
+import '../App.css';
 
 const Tarefa = ({ tarefa, removerTarefa, editarTarefa, ativarEdicao, marcarConcluida }) => {
-  const [novoTexto, setNovoTexto] = useState(tarefa.texto);
 
   const handleEdit = (e) => {
     e.preventDefault();
-    editarTarefa(novoTexto);
+    if (e.target.elements.novoTexto.value.trim()) {
+      editarTarefa(e.target.elements.novoTexto.value); // Passa o novo texto para a função de edição
+    }
   };
 
   return (
@@ -13,22 +15,22 @@ const Tarefa = ({ tarefa, removerTarefa, editarTarefa, ativarEdicao, marcarConcl
       <input
         type="checkbox"
         checked={tarefa.concluida}
-        onChange={marcarConcluida}
+        onChange={() => marcarConcluida(tarefa.id)}
       />
       {tarefa.editando ? (
         <form onSubmit={handleEdit}>
           <input
             type="text"
-            value={novoTexto}
-            onChange={(e) => setNovoTexto(e.target.value)}
+            name="novoTexto"
+            defaultValue={tarefa.texto} // Define o valor padrão como o texto da tarefa
           />
           <button type="submit">Salvar</button>
         </form>
       ) : (
         <>
           <span>{tarefa.texto}</span>
-          <button onClick={ativarEdicao}>Editar</button>
-          <button onClick={removerTarefa}>Remover</button>
+          <button onClick={() => ativarEdicao(tarefa.id)}>Editar</button>
+          <button onClick={() => removerTarefa(tarefa.id)}>Remover</button>
         </>
       )}
     </li>

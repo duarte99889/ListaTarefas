@@ -1,27 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Tarefa from './Tarefa';
+import '../App.css'
 
 const ListaTarefas = ({ tarefas, removerTarefa, editarTarefa, ativarEdicao, marcarConcluida }) => {
-  const [termoPesquisa, setTermoPesquisa] = useState('');
-
-  const tarefasFiltradas = tarefas.filter((tarefa) =>
-    tarefa.texto.toLowerCase().includes(termoPesquisa.toLowerCase())
-  );
-
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Pesquisar tarefas..."
-        value={termoPesquisa}
-        onChange={(e) => setTermoPesquisa(e.target.value)}
-        className="campo-pesquisa"
-      />
-
       <ul>
-        {tarefasFiltradas.map((tarefa) => (
+        {tarefas.map((tarefa) => (
           <Tarefa
-            key={tarefa.id} 
+            key={tarefa.id}
             tarefa={tarefa}
             removerTarefa={() => removerTarefa(tarefa.id)}
             editarTarefa={(novoTexto) => editarTarefa(tarefa.id, novoTexto)}
@@ -35,3 +22,4 @@ const ListaTarefas = ({ tarefas, removerTarefa, editarTarefa, ativarEdicao, marc
 };
 
 export default ListaTarefas;
+

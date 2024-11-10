@@ -147,12 +147,17 @@ li form input[type="text"] {
   border-radius: 4px;
 }
 
-.campo-pesquisa {
-  width: 80%; 
-  max-width: 500px; 
-  padding: 10px; 
-  font-size: 16px; 
-  border-radius: 5px; 
-  border: 1px solid #ccc; 
-  box-sizing: border-box; 
+.barra-pesquisa {
+  margin: 10px 0;
 }
+
+.barra-pesquisa input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.1em;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+

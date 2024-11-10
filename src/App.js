@@ -31,7 +31,7 @@ const NavButton = styled(Link)`
 `;
 
 NavButton.propTypes = {
-  active: PropTypes.bool.isRequired, // 'active' é um booleano obrigatório
+  active: PropTypes.bool.isRequired, 
 };
 
 function Navigation() {

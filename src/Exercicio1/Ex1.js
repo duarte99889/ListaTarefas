@@ -1,11 +1,12 @@
-import '../App.css';
-import CriarTarefa from './criarTarefa';
-import ListaTarefas from './TempListaTarefas';
 import React, { useState } from 'react';
+import '../App.css';  // Importando o CSS correto
+import CriarTarefa from './criarTarefa';
+import ListaTarefas from './TempListaTarefas'; // Alterei o nome para refletir sua mudança
 
 function Ex1() {
   const [todos, setTodos] = useState([]);
   const [secaoAtiva, setSecaoAtiva] = useState('todas');
+  const [pesquisa, setPesquisa] = useState('');
 
   const adicionarTarefa = (texto) => {
     setTodos([...todos, { id: Date.now(), texto, concluida: false, editando: false }]);
@@ -24,7 +25,7 @@ function Ex1() {
     );
     setTodos(novasTarefas);
   };
-  
+
   const ativarEdicao = (id) => {
     const novasTarefas = todos.map((todo) =>
       todo.id === id ? { ...todo, editando: true } : todo
@@ -40,6 +41,14 @@ function Ex1() {
   const tarefasConcluidas = todos.filter((todo) => todo.concluida);
   const tarefasNaoConcluidas = todos.filter((todo) => !todo.concluida);
 
+  // Filtrar tarefas com base na pesquisa
+  const filtrarTarefas = (tarefas) => {
+    if (!pesquisa) return tarefas; // Se não houver pesquisa, retorna todas as tarefas
+    return tarefas.filter((tarefa) =>
+      tarefa.texto.toLowerCase().includes(pesquisa.toLowerCase())
+    );
+  };
+
   return (
     <div className="app-container">
       <h1>Lista de Tarefas 1</h1>
@@ -54,8 +63,19 @@ function Ex1() {
       {secaoAtiva === 'todas' && (
         <section className="section todas-tarefas">
           <h2>Todas as Tarefas</h2>
+          
+          {/* Barra de pesquisa dentro da seção */}
+          <div className="barra-pesquisa">
+            <input
+              type="text"
+              placeholder="Pesquisar tarefas..."
+              value={pesquisa}
+              onChange={(e) => setPesquisa(e.target.value)}
+            />
+          </div>
+
           <ListaTarefas
-            tarefas={todos}
+            tarefas={filtrarTarefas(todos)}  // Aplicando o filtro de pesquisa
             removerTarefa={removeTodo}
             editarTarefa={editarTarefa}
             ativarEdicao={ativarEdicao}
@@ -67,8 +87,19 @@ function Ex1() {
       {secaoAtiva === 'naoConcluidas' && (
         <section className="section nao-concluidas">
           <h2>Tarefas Não Concluídas</h2>
+          
+          {/* Barra de pesquisa dentro da seção */}
+          <div className="barra-pesquisa">
+            <input
+              type="text"
+              placeholder="Pesquisar tarefas..."
+              value={pesquisa}
+              onChange={(e) => setPesquisa(e.target.value)}
+            />
+          </div>
+
           <ListaTarefas
-            tarefas={tarefasNaoConcluidas}
+            tarefas={filtrarTarefas(tarefasNaoConcluidas)}  // Aplicando o filtro de pesquisa
             removerTarefa={removeTodo}
             editarTarefa={editarTarefa}
             ativarEdicao={ativarEdicao}
@@ -80,8 +111,19 @@ function Ex1() {
       {secaoAtiva === 'concluidas' && (
         <section className="section concluidas">
           <h2>Tarefas Concluídas</h2>
+          
+          {/* Barra de pesquisa dentro da seção */}
+          <div className="barra-pesquisa">
+            <input
+              type="text"
+              placeholder="Pesquisar tarefas..."
+              value={pesquisa}
+              onChange={(e) => setPesquisa(e.target.value)}
+            />
+          </div>
+
           <ListaTarefas
-            tarefas={tarefasConcluidas}
+            tarefas={filtrarTarefas(tarefasConcluidas)}  // Aplicando o filtro de pesquisa
             removerTarefa={removeTodo}
             editarTarefa={editarTarefa}
             ativarEdicao={ativarEdicao}
