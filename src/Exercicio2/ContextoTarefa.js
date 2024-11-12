@@ -46,6 +46,11 @@ export function TodosProvider({ children }) {
     return todos;
   };
 
+
+  const totalTarefas = todos.length;
+  const totalConcluidas = todos.filter((todo) => todo.concluida).length;
+  const totalNaoConcluidas = todos.filter((todo) => !todo.concluida).length;
+
   const value = {
     todos,
     adicionarTarefa,
@@ -53,10 +58,15 @@ export function TodosProvider({ children }) {
     removerTarefa,
     ativarEdicao,
     editarTarefa,
-    secaoAtiva,
     ativarSecao,
     tarefasFiltradas,
+    totalTarefas,
+    totalConcluidas,
+    totalNaoConcluidas,
+    secaoAtiva,
   };
 
   return <TodosContext.Provider value={value}>{children}</TodosContext.Provider>;
 }
+
+
