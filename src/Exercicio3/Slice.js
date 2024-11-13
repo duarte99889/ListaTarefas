@@ -13,7 +13,7 @@ const balanceSlice = createSlice({
             if (state.balance >= action.payload) {
                 state.balance -= action.payload;
             } else {
-                alert("Saldo é insuficiente");
+                alert("O Saldo é insuficiente");
             }
         },
     },

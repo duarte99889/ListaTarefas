@@ -8,6 +8,9 @@ npm install react-router-dom
 npm install styled-components
 npm install prop-types
 
+npm install @reduxjs/toolkit
+ npm install react-redux
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
