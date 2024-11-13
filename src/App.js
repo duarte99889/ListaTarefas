@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Link, Route, useLocation } from 'react
 import styled from 'styled-components';
 import Ex1 from './Exercicio1/Ex1';
 import Ex2 from './Exercicio2/Ex2';
+import Ex3 from './Exercicio3/Ex3';
 import PropTypes from 'prop-types';
 
 const NavContainer = styled.nav`
@@ -45,6 +46,9 @@ function Navigation() {
       <NavButton to="/Ex2" active={location.pathname === '/Ex2'}>
         Exercicio 2
       </NavButton>
+      <NavButton to="/Ex3" active={location.pathname === '/Ex3'}>
+        Exercicio3
+      </NavButton>
     </NavContainer>
   );
 }
@@ -58,6 +62,7 @@ function App() {
       <Routes>
         <Route path="/Ex1" element={<Ex1 />} />
         <Route path="/Ex2" element={<Ex2 />} />
+        <Route path="/Ex3" element={<Ex3 />} />
       </Routes>
     </Router>
   );

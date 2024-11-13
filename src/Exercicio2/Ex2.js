@@ -1,4 +1,3 @@
-// Ex2.js
 import React from 'react';
 import styled from 'styled-components';
 import CriarTarefa from './criarTarefa2';
