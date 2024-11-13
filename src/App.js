@@ -47,7 +47,7 @@ function Navigation() {
         Exercicio 2
       </NavButton>
       <NavButton to="/Ex3" active={location.pathname === '/Ex3'}>
-        Exercicio3
+        Exercicio 3
       </NavButton>
     </NavContainer>
   );
